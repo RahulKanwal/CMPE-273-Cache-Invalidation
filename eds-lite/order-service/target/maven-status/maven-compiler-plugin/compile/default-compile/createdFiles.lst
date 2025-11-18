@@ -1,0 +1,12 @@
+com/eds/order/MetricsWriter.class
+com/eds/order/controller/OrderController.class
+com/eds/order/model/OrderEvent$OrderEventType.class
+com/eds/order/model/OrderEvent.class
+com/eds/order/model/CreateOrderRequest.class
+com/eds/order/model/Order$OrderItem.class
+com/eds/order/config/KafkaConfig.class
+com/eds/order/model/Order.class
+com/eds/order/service/OrderService.class
+com/eds/order/repository/OrderRepository.class
+com/eds/order/model/Order$OrderStatus.class
+com/eds/order/OrderServiceApplication.class
