@@ -1,0 +1,117 @@
+services:
+  # Redis Service
+  - type: redis
+    name: eds-redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru
+
+  # MongoDB Service  
+  - type: pserv
+    name: eds-mongodb
+    env: docker
+    dockerfilePath: ./mongodb/Dockerfile
+    plan: starter
+    disk:
+      name: mongodb-data
+      mountPath: /data/db
+      sizeGB: 1
+    envVars:
+      - key: MONGO_INITDB_ROOT_USERNAME
+        value: admin
+      - key: MONGO_INITDB_ROOT_PASSWORD
+        generateValue: true
+
+  # Kafka Service (using Redpanda as Kafka-compatible)
+  - type: pserv
+    name: eds-kafka
+    env: docker
+    dockerfilePath: ./kafka/Dockerfile
+    plan: starter
+    disk:
+      name: kafka-data
+      mountPath: /var/lib/redpanda/data
+      sizeGB: 1
+
+  # API Gateway
+  - type: web
+    name: eds-api-gateway
+    env: docker
+    dockerfilePath: ./eds-lite/api-gateway/Dockerfile
+    plan: starter
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: eds-redis
+          property: connectionString
+      - key: MONGODB_URI
+        fromService:
+          type: pserv
+          name: eds-mongodb
+          property: connectionString
+      - key: KAFKA_BOOTSTRAP_SERVERS
+        fromService:
+          type: pserv
+          name: eds-kafka
+          property: host
+    healthCheckPath: /health
+
+  # Catalog Service
+  - type: web
+    name: eds-catalog-service
+    env: docker
+    dockerfilePath: ./eds-lite/catalog-service/Dockerfile
+    plan: starter
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: eds-redis
+          property: connectionString
+      - key: MONGODB_URI
+        fromService:
+          type: pserv
+          name: eds-mongodb
+          property: connectionString
+      - key: KAFKA_BOOTSTRAP_SERVERS
+        fromService:
+          type: pserv
+          name: eds-kafka
+          property: host
+    healthCheckPath: /health
+
+  # Order Service
+  - type: web
+    name: eds-order-service
+    env: docker
+    dockerfilePath: ./eds-lite/order-service/Dockerfile
+    plan: starter
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: eds-redis
+          property: connectionString
+      - key: MONGODB_URI
+        fromService:
+          type: pserv
+          name: eds-mongodb
+          property: connectionString
+      - key: KAFKA_BOOTSTRAP_SERVERS
+        fromService:
+          type: pserv
+          name: eds-kafka
+          property: host
+    healthCheckPath: /health
