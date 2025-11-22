@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { getProductImage, handleImageError } from '../utils/imageUtils';
 
 const Admin = () => {
   const { user } = useAuth();
@@ -391,7 +392,7 @@ const Admin = () => {
                         {product.images && product.images.length > 0 ? (
                           <div>
                             <img 
-                              src={product.images[0]} 
+                              src={getProductImage(product.images, 0, '50x50', product.category)} 
                               alt={product.name}
                               style={{ 
                                 width: '50px', 
@@ -400,9 +401,7 @@ const Admin = () => {
                                 borderRadius: '4px',
                                 marginBottom: '5px'
                               }}
-                              onError={(e) => {
-                                e.target.src = 'https://via.placeholder.com/50x50?text=No+Image';
-                              }}
+                              onError={(e) => handleImageError(e, product.category, '50x50')}
                             />
                             <div style={{ fontSize: '11px', color: '#666' }}>
                               {product.images.length} image{product.images.length !== 1 ? 's' : ''}

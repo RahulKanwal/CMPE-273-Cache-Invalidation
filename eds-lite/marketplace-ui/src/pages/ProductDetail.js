@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
+import { getProductImage, getValidProductImages, handleImageError } from '../utils/imageUtils';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -26,6 +27,8 @@ const ProductDetail = () => {
       setLoading(false);
     }
   };
+
+  const validImages = product ? getValidProductImages(product) : [];
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
@@ -91,7 +94,7 @@ const ProductDetail = () => {
         <div>
           <div style={{ marginBottom: '20px' }}>
             <img 
-              src={product.images?.[selectedImage] || 'https://via.placeholder.com/500x400'} 
+              src={validImages.length > 0 ? validImages[selectedImage] : getProductImage(null, 0, '500x400', product.category)} 
               alt={product.name}
               style={{ 
                 width: '100%', 
@@ -99,12 +102,13 @@ const ProductDetail = () => {
                 objectFit: 'cover', 
                 borderRadius: '8px' 
               }}
+              onError={(e) => handleImageError(e, product.category, '500x400')}
             />
           </div>
           
-          {product.images && product.images.length > 1 && (
-            <div style={{ display: 'flex', gap: '10px' }}>
-              {product.images.map((image, index) => (
+          {validImages.length > 1 && (
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              {validImages.map((image, index) => (
                 <img
                   key={index}
                   src={image}
@@ -118,6 +122,7 @@ const ProductDetail = () => {
                     cursor: 'pointer',
                     border: selectedImage === index ? '2px solid #007bff' : '2px solid transparent'
                   }}
+                  onError={(e) => handleImageError(e, product.category, '80x80')}
                 />
               ))}
             </div>

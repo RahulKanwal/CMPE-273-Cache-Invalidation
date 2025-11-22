@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { getProductImage, handleImageError } from '../utils/imageUtils';
 
 const Cart = () => {
   const { items, updateQuantity, removeFromCart, getTotalPrice } = useCart();
@@ -50,9 +51,10 @@ const Cart = () => {
             {items.map(item => (
               <div key={item.id} className="cart-item">
                 <img 
-                  src={item.images?.[0] || 'https://via.placeholder.com/80x80'} 
+                  src={getProductImage(item.images, 0, '80x80', item.category)} 
                   alt={item.name}
                   className="cart-item-image"
+                  onError={(e) => handleImageError(e, item.category, '80x80')}
                 />
                 
                 <div className="cart-item-info">

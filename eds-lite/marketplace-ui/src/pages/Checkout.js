@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { getProductImage, handleImageError } from '../utils/imageUtils';
 
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -93,9 +94,10 @@ const Checkout = () => {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                   <img 
-                    src={item.images?.[0] || 'https://via.placeholder.com/60x60'} 
+                    src={getProductImage(item.images, 0, '60x60', item.category)} 
                     alt={item.name}
                     style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}
+                    onError={(e) => handleImageError(e, item.category, '60x60')}
                   />
                   <div>
                     <div style={{ fontWeight: '500' }}>{item.name}</div>
