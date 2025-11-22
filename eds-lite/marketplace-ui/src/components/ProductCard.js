@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import ProductImage from './ProductImage';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -39,28 +40,29 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card" onClick={handleCardClick}>
-      <img 
-        src={product.images?.[0] || 'https://via.placeholder.com/300x200'} 
-        alt={product.name}
+      <ProductImage 
+        product={product}
+        size="300x200"
         className="product-image"
       />
       <div className="product-info">
-        <h3 className="product-name">{product.name}</h3>
-        <div className="product-price">{formatPrice(product.price)}</div>
-        
-        {product.rating && (
-          <div className="product-rating">
-            <span>{renderStars(product.rating)}</span>
-            <span>({product.reviewCount || 0})</span>
-          </div>
-        )}
-        
-        <div className="product-category">{product.category}</div>
+        <div className="product-details">
+          <h3 className="product-name">{product.name}</h3>
+          <div className="product-price">{formatPrice(product.price)}</div>
+          
+          {product.rating && (
+            <div className="product-rating">
+              <span>{renderStars(product.rating)}</span>
+              <span>({product.reviewCount || 0})</span>
+            </div>
+          )}
+          
+          <div className="product-category">{product.category}</div>
+        </div>
         
         <button 
-          className="btn btn-primary"
+          className="btn btn-primary product-card-button"
           onClick={handleAddToCart}
-          style={{ marginTop: '10px', width: '100%' }}
         >
           Add to Cart
         </button>

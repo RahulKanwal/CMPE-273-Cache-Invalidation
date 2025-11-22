@@ -661,3 +661,887 @@ src/pages/Products.js
   Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
 webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/components/ProductCard.js
+  Line 4:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 4:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 17:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/components/ProductCard.js
+  Line 4:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 4:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 17:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 17:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 17:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 5:10:  'getProductImage' is defined but never used                                                                      no-unused-vars
+  Line 5:27:  'getValidProductImages' is defined but never used                                                                no-unused-vars
+  Line 5:50:  'handleImageError' is defined but never used                                                                     no-unused-vars
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 5:10:  'getProductImage' is defined but never used                                                                      no-unused-vars
+  Line 5:27:  'getValidProductImages' is defined but never used                                                                no-unused-vars
+  Line 5:50:  'handleImageError' is defined but never used                                                                     no-unused-vars
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 5:10:  'getProductImage' is defined but never used                                                                      no-unused-vars
+  Line 5:50:  'handleImageError' is defined but never used                                                                     no-unused-vars
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 31:9:  'validImages' is assigned a value but never used                                                                 no-unused-vars
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 5:10:  'getProductImage' is defined but never used                                                                      no-unused-vars
+  Line 5:50:  'handleImageError' is defined but never used                                                                     no-unused-vars
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 31:9:  'validImages' is assigned a value but never used                                                                 no-unused-vars
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/Cart.js
+  Line 5:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 5:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/Cart.js
+  Line 5:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 5:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/Checkout.js
+  Line 6:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 6:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/Checkout.js
+  Line 6:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 6:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/Admin.js
+  Line 5:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 5:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/Admin.js
+  Line 5:10:  'getProductImage' is defined but never used   no-unused-vars
+  Line 5:27:  'handleImageError' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/ProductCard.js
+  Line 44:14:  'getProductImage' is not defined   no-undef
+  Line 47:25:  'handleImageError' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/components/ProductCard.js
+  Line 4:8:  'ProductImage' is defined but never used  no-unused-vars
+
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+ERROR in [eslint] 
+src/components/ProductCard.js
+  Line 44:14:  'getProductImage' is not defined   no-undef
+  Line 47:25:  'handleImageError' is not defined  no-undef
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/OrderHistory.js
+  Line 3:8:  'axios' is defined but never used  no-unused-vars
+
+src/pages/ProductDetail.js
+  Line 18:6:  React Hook useEffect has a missing dependency: 'fetchProduct'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Products.js
+  Line 31:6:  React Hook useEffect has a missing dependency: 'fetchProducts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
