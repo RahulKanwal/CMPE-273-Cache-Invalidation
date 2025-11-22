@@ -1,10 +1,15 @@
 com/eds/catalog/CatalogServiceApplication.class
+com/eds/catalog/repository/ProductRepositoryCustom.class
 com/eds/catalog/config/KafkaConfig.class
 com/eds/catalog/MetricsWriter.class
+com/eds/catalog/model/ProductSearchRequest.class
 com/eds/catalog/config/RedisConfig.class
 com/eds/catalog/model/ProductUpdateRequest.class
+com/eds/catalog/model/ProductCreateRequest.class
+com/eds/catalog/model/ProductSearchResponse.class
 com/eds/catalog/service/CacheInvalidationConsumer.class
 com/eds/catalog/repository/ProductRepository.class
+com/eds/catalog/repository/ProductRepositoryImpl.class
 com/eds/catalog/config/CacheConfig.class
 com/eds/catalog/aspect/CacheMetricsAspect.class
 com/eds/catalog/model/CacheInvalidationEvent.class

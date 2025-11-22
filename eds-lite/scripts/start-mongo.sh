@@ -29,34 +29,36 @@ if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null 2>&1; then
 else
     echo "Starting MongoDB on localhost:27017..."
     
-    # Try to start with brew services (macOS)
-    if command -v brew &> /dev/null && brew services list | grep -q mongodb-community; then
-        echo "Using brew services to start MongoDB..."
-        brew services start mongodb-community
+    # Start MongoDB manually (more reliable than brew services)
+    echo "Starting MongoDB manually..."
+    mkdir -p /tmp/mongodb-data
+    
+    # Try fork mode first
+    if mongod --dbpath /tmp/mongodb-data --port 27017 --fork --logpath /tmp/mongodb.log 2>/dev/null; then
+        sleep 3
+        echo "✓ MongoDB started successfully with fork mode"
+    else
+        # Fallback: background start
+        echo "Fork mode failed, trying background start..."
+        mongod --dbpath /tmp/mongodb-data --port 27017 > /tmp/mongodb.log 2>&1 &
         sleep 3
         
-        # Verify it started
         if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null 2>&1; then
-            echo "✓ MongoDB started successfully with brew services"
+            echo "✓ MongoDB started successfully in background"
         else
-            echo "❌ Failed to start MongoDB with brew services"
-            exit 1
-        fi
-    else
-        # Fallback: manual start
-        echo "Starting MongoDB manually..."
-        mkdir -p /tmp/mongodb-data
-        
-        if mongod --dbpath /tmp/mongodb-data --port 27017 --fork --logpath /tmp/mongodb.log 2>/dev/null; then
-            sleep 3
-            echo "✓ MongoDB started successfully"
-        else
-            # Last resort: background start
-            mongod --dbpath /tmp/mongodb-data --port 27017 > /tmp/mongodb.log 2>&1 &
-            sleep 3
-            
-            if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null 2>&1; then
-                echo "✓ MongoDB started successfully"
+            # Last resort: try brew services (may have launchctl issues)
+            if command -v brew &> /dev/null && brew services list | grep -q mongodb-community; then
+                echo "Trying brew services as last resort..."
+                brew services start mongodb-community 2>/dev/null || true
+                sleep 3
+                
+                if lsof -Pi :27017 -sTCP:LISTEN -t >/dev/null 2>&1; then
+                    echo "✓ MongoDB started with brew services"
+                else
+                    echo "❌ Failed to start MongoDB. Check /tmp/mongodb.log for errors"
+                    echo "You may need to run: brew services stop mongodb-community && brew services start mongodb-community"
+                    exit 1
+                fi
             else
                 echo "❌ Failed to start MongoDB. Check /tmp/mongodb.log for errors"
                 exit 1
