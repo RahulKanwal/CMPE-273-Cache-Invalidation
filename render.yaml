@@ -1,36 +1,10 @@
 services:
-  # Redis Service
+  # Redis Service - Render Managed
   - type: redis
     name: eds-redis
     plan: starter
     maxmemoryPolicy: allkeys-lru
-
-  # MongoDB Service  
-  - type: pserv
-    name: eds-mongodb
-    env: docker
-    dockerfilePath: ./mongodb/Dockerfile
-    plan: starter
-    disk:
-      name: mongodb-data
-      mountPath: /data/db
-      sizeGB: 1
-    envVars:
-      - key: MONGO_INITDB_ROOT_USERNAME
-        value: admin
-      - key: MONGO_INITDB_ROOT_PASSWORD
-        generateValue: true
-
-  # Kafka Service (using Redpanda as Kafka-compatible)
-  - type: pserv
-    name: eds-kafka
-    env: docker
-    dockerfilePath: ./kafka/Dockerfile
-    plan: starter
-    disk:
-      name: kafka-data
-      mountPath: /var/lib/redpanda/data
-      sizeGB: 1
+    ipAllowList: []  # Empty array means allow all IPs
 
   # API Gateway
   - type: web
@@ -38,8 +12,6 @@ services:
     env: docker
     dockerfilePath: ./eds-lite/api-gateway/Dockerfile
     plan: starter
-    buildCommand: ""
-    startCommand: ""
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: production
@@ -49,15 +21,9 @@ services:
           name: eds-redis
           property: connectionString
       - key: MONGODB_URI
-        fromService:
-          type: pserv
-          name: eds-mongodb
-          property: connectionString
+        value: "CHANGE_ME"  # Set this to your MongoDB Atlas connection string
       - key: KAFKA_BOOTSTRAP_SERVERS
-        fromService:
-          type: pserv
-          name: eds-kafka
-          property: host
+        value: "CHANGE_ME"  # Set this to your Kafka service URL
     healthCheckPath: /health
 
   # Catalog Service
@@ -66,8 +32,6 @@ services:
     env: docker
     dockerfilePath: ./eds-lite/catalog-service/Dockerfile
     plan: starter
-    buildCommand: ""
-    startCommand: ""
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: production
@@ -77,15 +41,9 @@ services:
           name: eds-redis
           property: connectionString
       - key: MONGODB_URI
-        fromService:
-          type: pserv
-          name: eds-mongodb
-          property: connectionString
+        value: "CHANGE_ME"  # Set this to your MongoDB Atlas connection string
       - key: KAFKA_BOOTSTRAP_SERVERS
-        fromService:
-          type: pserv
-          name: eds-kafka
-          property: host
+        value: "CHANGE_ME"  # Set this to your Kafka service URL
     healthCheckPath: /health
 
   # Order Service
@@ -94,8 +52,6 @@ services:
     env: docker
     dockerfilePath: ./eds-lite/order-service/Dockerfile
     plan: starter
-    buildCommand: ""
-    startCommand: ""
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: production
@@ -105,13 +61,7 @@ services:
           name: eds-redis
           property: connectionString
       - key: MONGODB_URI
-        fromService:
-          type: pserv
-          name: eds-mongodb
-          property: connectionString
+        value: "CHANGE_ME"  # Set this to your MongoDB Atlas connection string
       - key: KAFKA_BOOTSTRAP_SERVERS
-        fromService:
-          type: pserv
-          name: eds-kafka
-          property: host
+        value: "CHANGE_ME"  # Set this to your Kafka service URL
     healthCheckPath: /health
