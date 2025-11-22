@@ -7,6 +7,8 @@ public class ProductUpdateRequest {
     private String description;
     private BigDecimal price;
     private Integer stock;
+    private String category;
+    private java.util.List<String> images;
 
     // No-arg constructor required for Jackson deserialization
     public ProductUpdateRequest() {
@@ -42,6 +44,22 @@ public class ProductUpdateRequest {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public java.util.List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(java.util.List<String> images) {
+        this.images = images;
     }
 }
 

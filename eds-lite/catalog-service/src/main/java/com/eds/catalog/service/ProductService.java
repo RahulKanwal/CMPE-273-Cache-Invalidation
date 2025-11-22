@@ -2,7 +2,10 @@ package com.eds.catalog.service;
 
 import com.eds.catalog.model.CacheInvalidationEvent;
 import com.eds.catalog.model.Product;
+import com.eds.catalog.model.ProductCreateRequest;
 import com.eds.catalog.model.ProductUpdateRequest;
+import com.eds.catalog.model.ProductSearchRequest;
+import com.eds.catalog.model.ProductSearchResponse;
 import com.eds.catalog.repository.ProductRepository;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -138,6 +141,8 @@ public class ProductService {
                 if (request.getDescription() != null) product.setDescription(request.getDescription());
                 if (request.getPrice() != null) product.setPrice(request.getPrice());
                 if (request.getStock() != null) product.setStock(request.getStock());
+                if (request.getCategory() != null) product.setCategory(request.getCategory());
+                if (request.getImages() != null) product.setImages(request.getImages());
 
                 // Don't manually increment version - Spring Data's @Version annotation handles this automatically
                 product.setUpdatedAt(Instant.now());
@@ -235,6 +240,72 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public ProductSearchResponse searchProducts(ProductSearchRequest request) {
+        return productRepository.searchProducts(request);
+    }
+
+    public List<String> getCategories() {
+        return productRepository.findDistinctCategories();
+    }
+
+    public List<Product> getFeaturedProducts() {
+        return productRepository.findByFeaturedTrue();
+    }
+
+    public Product createProduct(ProductCreateRequest request) {
+        Product product = new Product();
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
+        product.setStock(request.getStock());
+        product.setCategory(request.getCategory());
+        product.setTags(request.getTags());
+        product.setImages(request.getImages());
+        product.setFeatured(request.getFeatured() != null ? request.getFeatured() : false);
+        product.setRating(0.0);
+        product.setReviewCount(0);
+        product.setUpdatedAt(Instant.now());
+
+        Product saved = productRepository.save(product);
+        
+        // Publish cache invalidation event for new product
+        if ("ttl_invalidate".equals(cacheMode)) {
+            try {
+                publishCacheInvalidation(saved.getId(), saved.getVersion());
+            } catch (Exception e) {
+                System.err.println("Warning: Failed to publish cache invalidation event for new product: " + e.getMessage());
+            }
+        }
+        
+        return saved;
+    }
+
+    @CacheEvict(value = "productById", key = "#id")
+    public boolean deleteProduct(String id) {
+        try {
+            // Check if product exists
+            if (!productRepository.existsById(id)) {
+                return false;
+            }
+            
+            // Delete the product
+            productRepository.deleteById(id);
+            
+            // Publish cache invalidation event
+            if ("ttl_invalidate".equals(cacheMode)) {
+                try {
+                    publishCacheInvalidation(id, null);
+                } catch (Exception e) {
+                    System.err.println("Warning: Failed to publish cache invalidation event for deleted product: " + e.getMessage());
+                }
+            }
+            
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting product: " + id, e);
+        }
     }
 }
 

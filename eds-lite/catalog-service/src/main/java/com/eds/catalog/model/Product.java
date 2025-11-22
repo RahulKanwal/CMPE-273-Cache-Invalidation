@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Document(collection = "products")
 public class Product implements Serializable {
@@ -17,12 +18,17 @@ public class Product implements Serializable {
     private String description;
     private BigDecimal price;
     private Integer stock;
+    private String category;
+    private List<String> tags;
+    private List<String> images;
+    private boolean featured;
+    private Double rating;
+    private Integer reviewCount;
     @Version
     private Integer version;
     private Instant updatedAt;
 
     public Product() {
-        this.version = 1;
         this.updatedAt = Instant.now();
     }
 
@@ -32,7 +38,6 @@ public class Product implements Serializable {
         this.description = description;
         this.price = price;
         this.stock = stock;
-        this.version = 1;
         this.updatedAt = Instant.now();
     }
 
@@ -91,6 +96,54 @@ public class Product implements Serializable {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public Integer getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
     }
 }
 

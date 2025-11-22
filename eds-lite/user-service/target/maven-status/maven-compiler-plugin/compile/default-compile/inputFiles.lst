@@ -1,0 +1,10 @@
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/config/SecurityConfig.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/controller/AuthController.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/model/User.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/model/AuthResponse.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/UserServiceApplication.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/service/UserService.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/model/LoginRequest.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/repository/UserRepository.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/model/RegisterRequest.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/user-service/src/main/java/com/eds/user/service/JwtService.java
