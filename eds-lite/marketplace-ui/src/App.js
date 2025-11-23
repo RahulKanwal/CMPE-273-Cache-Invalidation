@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
 import OrderHistory from './pages/OrderHistory';
+import CacheDemo from './pages/CacheDemo';
 import './App.css';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/orders" element={<OrderHistory />} />
+                <Route path="/cache-demo" element={<CacheDemo />} />
               </Routes>
             </main>
           </div>

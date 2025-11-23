@@ -24,6 +24,7 @@ const Header = () => {
           <nav className="nav">
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/products" className="nav-link">Products</Link>
+            <Link to="/cache-demo" className="nav-link">Cache Demo</Link>
             {user && user.role === 'ADMIN' && (
               <Link to="/admin" className="nav-link">Admin</Link>
             )}

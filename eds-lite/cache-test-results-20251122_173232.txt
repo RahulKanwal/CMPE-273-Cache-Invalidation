@@ -1,0 +1,316 @@
+EDS Marketplace Cache Scenarios Test Results
+============================================
+Test Run: Sat Nov 22 17:32:32 PST 2025
+Test ID: 20251122_173232
+
+This test validates the three cache invalidation scenarios:
+1. Scenario A: No Cache (CACHE_MODE=none)
+2. Scenario B: TTL-Only Cache (CACHE_MODE=ttl) 
+3. Scenario C: TTL + Kafka Invalidation (CACHE_MODE=ttl_invalidate)
+
+Starting cache scenarios test...
+
+Checking prerequisites...
+✓ Kafka is running on port 9092
+✓ Redis is running on port 6379
+✓ MongoDB is running on port 27017
+
+✓ All infrastructure services are running!
+Stopping catalog service...
+✓ Catalog service stopped
+
+=========================================
+Testing Scenario A: No Cache
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 21ms
+Price: , Version: 
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 32ms
+Price: , Version: 
+Expected: Similar response times (no caching)
+✓ Both requests went to database
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 199.99, "stock": 100}
+Update response: Price=, Version=
+⚠ Version not incremented
+
+Waiting 1 second...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 30ms
+Price: , Version: 
+⚠ Stale data detected - Expected: Price=199.99, Version=
+   Got: Price=, Version=
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 29ms
+✓ Consistency: All reads returned version 
+
+Scenario A Summary:
+- Cache Mode: No Cache
+- First read: 21ms
+- Second read: 32ms
+- Post-update read: 30ms
+- Average rapid read: 29ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ⚠ Issues detected
+Starting catalog service with CACHE_MODE=none...
+Waiting for service to start...
+✓ Catalog service started (PID: 57712)
+
+=========================================
+Testing Scenario A: No Cache
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 129ms
+Price: 2499.00, Version: 7
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 39ms
+Price: 2499.00, Version: 7
+Expected: Similar response times (no caching)
+✓ Both requests went to database
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 2509.00, "stock": 100}
+Update response: Price=2509.00, Version=8
+✓ Version incremented: 7 -> 8
+
+Waiting 1 second...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 30ms
+Price: 2509.00, Version: 8
+✓ Fresh data retrieved - cache invalidation working
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 39ms
+✓ Consistency: All reads returned version 8
+
+Scenario A Summary:
+- Cache Mode: No Cache
+- First read: 129ms
+- Second read: 39ms
+- Post-update read: 30ms
+- Average rapid read: 39ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ✓ Working
+Stopping catalog service...
+✓ Catalog service stopped
+
+
+
+=========================================
+Testing Scenario B: TTL-Only Cache
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 21ms
+Price: , Version: 
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 25ms
+Price: , Version: 
+Expected: Second request faster (cache hit)
+⚠ Cache behavior unclear (similar response times)
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 199.99, "stock": 100}
+Update response: Price=, Version=
+⚠ Version not incremented
+
+Waiting 2 seconds (TTL cache may still serve stale data)...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 27ms
+Price: , Version: 
+⚠ Stale data detected - Expected: Price=199.99, Version=
+   Got: Price=, Version=
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 31ms
+✓ Consistency: All reads returned version 
+
+Scenario B Summary:
+- Cache Mode: TTL-Only Cache
+- First read: 21ms
+- Second read: 25ms
+- Post-update read: 27ms
+- Average rapid read: 31ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ⚠ Issues detected
+Starting catalog service with CACHE_MODE=ttl...
+Waiting for service to start...
+✓ Catalog service started (PID: 58130)
+
+=========================================
+Testing Scenario B: TTL-Only Cache
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 290ms
+Price: 2509.00, Version: 8
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 21ms
+Price: 2509.00, Version: 8
+Expected: Second request faster (cache hit)
+✓ Cache hit detected (faster response)
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 2519.00, "stock": 100}
+Update response: Price=2519.00, Version=9
+✓ Version incremented: 8 -> 9
+
+Waiting 2 seconds (TTL cache may still serve stale data)...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 40ms
+Price: 2519.00, Version: 9
+✓ Fresh data retrieved - cache invalidation working
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 36ms
+✓ Consistency: All reads returned version 9
+
+Scenario B Summary:
+- Cache Mode: TTL-Only Cache
+- First read: 290ms
+- Second read: 21ms
+- Post-update read: 40ms
+- Average rapid read: 36ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ✓ Working
+Stopping catalog service...
+✓ Catalog service stopped
+
+
+
+=========================================
+Testing Scenario C: TTL + Kafka Invalidation
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 17ms
+Price: , Version: 
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 31ms
+Price: , Version: 
+Expected: Second request faster (cache hit)
+⚠ Cache behavior unclear (similar response times)
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 199.99, "stock": 100}
+Update response: Price=, Version=
+⚠ Version not incremented
+
+Waiting 3 seconds for Kafka invalidation...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 18ms
+Price: , Version: 
+⚠ Stale data detected - Expected: Price=199.99, Version=
+   Got: Price=, Version=
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 30ms
+✓ Consistency: All reads returned version 
+
+Scenario C Summary:
+- Cache Mode: TTL + Kafka Invalidation
+- First read: 17ms
+- Second read: 31ms
+- Post-update read: 18ms
+- Average rapid read: 30ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ⚠ Issues detected
+Starting catalog service with CACHE_MODE=ttl_invalidate...
+Waiting for service to start...
+✓ Catalog service started (PID: 58543)
+
+=========================================
+Testing Scenario C: TTL + Kafka Invalidation
+=========================================
+
+Test 1: First Read (Cache Miss Expected)
+GET http://localhost:8081/products/1
+Response time: 251ms
+Price: 2519.00, Version: 9
+
+Test 2: Second Read (Cache Hit Expected for Cached Scenarios)
+GET http://localhost:8081/products/1
+Response time: 31ms
+Price: 2519.00, Version: 9
+Expected: Second request faster (cache hit)
+✓ Cache hit detected (faster response)
+
+Test 3: Update Product
+POST http://localhost:8081/products/1
+Body: {"price": 2529.00, "stock": 100}
+Update response: Price=2529.00, Version=10
+✓ Version incremented: 9 -> 10
+
+Waiting 3 seconds for Kafka invalidation...
+
+Test 4: Read After Update
+GET http://localhost:8081/products/1
+Response time: 45ms
+Price: 2529.00, Version: 10
+✓ Fresh data retrieved - cache invalidation working
+
+Test 5: Rapid Consistency Check (5 reads)
+Average response time: 37ms
+✓ Consistency: All reads returned version 10
+
+Scenario C Summary:
+- Cache Mode: TTL + Kafka Invalidation
+- First read: 251ms
+- Second read: 31ms
+- Post-update read: 45ms
+- Average rapid read: 37ms
+- Data consistency: ✓ Consistent
+- Cache invalidation: ✓ Working
+Stopping catalog service...
+✓ Catalog service stopped
+
+
+=========================================
+FINAL TEST SUMMARY
+=========================================
+
+Test completed at: Sat Nov 22 17:33:45 PST 2025
+Results saved to: cache-test-results-20251122_173232.txt
+
+Expected Results:
+- Scenario A: High latency, no caching benefits
+- Scenario B: Low latency, possible stale data after updates
+- Scenario C: Low latency, fresh data after updates
+
+Review the detailed results above to verify cache behavior.
+
