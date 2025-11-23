@@ -10,9 +10,14 @@ com/eds/catalog/model/ProductSearchResponse.class
 com/eds/catalog/service/CacheInvalidationConsumer.class
 com/eds/catalog/repository/ProductRepository.class
 com/eds/catalog/repository/ProductRepositoryImpl.class
+com/eds/catalog/model/ReviewRequest.class
 com/eds/catalog/config/CacheConfig.class
 com/eds/catalog/aspect/CacheMetricsAspect.class
 com/eds/catalog/model/CacheInvalidationEvent.class
 com/eds/catalog/controller/ProductController.class
+com/eds/catalog/model/Review.class
+com/eds/catalog/repository/ReviewRepository.class
+com/eds/catalog/controller/ReviewController.class
 com/eds/catalog/model/Product.class
+com/eds/catalog/service/ReviewService.class
 com/eds/catalog/service/ProductService.class

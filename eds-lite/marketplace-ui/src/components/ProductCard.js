@@ -23,6 +23,13 @@ const ProductCard = ({ product }) => {
     }).format(price);
   };
 
+  const getRatingBadgeClass = (rating) => {
+    if (rating >= 4.5) return 'rating-badge excellent';
+    if (rating >= 3.5) return 'rating-badge good';
+    if (rating >= 2.5) return 'rating-badge average';
+    return 'rating-badge poor';
+  };
+
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -50,12 +57,20 @@ const ProductCard = ({ product }) => {
           <h3 className="product-name">{product.name}</h3>
           <div className="product-price">{formatPrice(product.price)}</div>
           
-          {product.rating && (
-            <div className="product-rating">
-              <span>{renderStars(product.rating)}</span>
-              <span>({product.reviewCount || 0})</span>
-            </div>
-          )}
+          <div className="product-rating">
+            {product.rating && product.rating > 0 ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className={getRatingBadgeClass(product.rating)}>
+                  {product.rating.toFixed(1)}
+                </span>
+                <span style={{ fontSize: '14px', color: '#666' }}>
+                  ({product.reviewCount || 0} rating{product.reviewCount !== 1 ? 's' : ''})
+                </span>
+              </div>
+            ) : (
+              <span style={{ color: '#999', fontSize: '14px' }}>No ratings yet</span>
+            )}
+          </div>
           
           <div className="product-category">{product.category}</div>
         </div>
