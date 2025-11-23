@@ -7,17 +7,9 @@ use('eds');
 db.products.deleteMany({});
 db.users.deleteMany({});
 
-// Create admin user (password: admin123)
-db.users.insertOne({
-  _id: "admin",
-  email: "admin@marketplace.com",
-  password: "$2a$10$8.UnVuG9HHgffUDAlk8qfOuVGkqRdvuoony/4oGGe0TGrGBVxB5Ae", // admin123
-  firstName: "Admin",
-  lastName: "User",
-  role: "ADMIN",
-  createdAt: new Date(),
-  updatedAt: new Date()
-});
+// Note: Admin user should be created using the user service for proper password hashing
+// Run: ./scripts/create-admin-properly.sh after seeding products
+// Or use the registration endpoint and update the role manually
 
 // Sample products with marketplace features
 const products = [
@@ -262,6 +254,10 @@ db.products.insertMany(products);
 
 print("✅ Marketplace data seeded successfully!");
 print("📊 Inserted " + products.length + " products");
-print("👤 Created admin user: admin@marketplace.com / admin123");
 print("🏷️  Categories: Electronics, Clothing, Home & Garden, Books, Sports & Outdoors");
 print("⭐ Featured products: " + products.filter(p => p.featured).length);
+print("");
+print("⚠️  IMPORTANT: Admin user not created yet!");
+print("🔧 Run this command to create admin user:");
+print("   ./scripts/create-admin-properly.sh");
+print("👤 Admin credentials: admin@marketplace.com / admin123");

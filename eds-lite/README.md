@@ -45,7 +45,7 @@ A full-featured marketplace application built with microservices architecture, d
 ./scripts/start-redis.sh    # Terminal 2  
 ./scripts/start-mongo.sh    # Terminal 3
 
-# 3. Seed marketplace data
+# 3. Seed marketplace data (includes admin user)
 mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
 
 # 4. Start all marketplace services
@@ -53,7 +53,7 @@ mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
 
 # 5. Access the marketplace
 # Frontend: http://localhost:3000
-# Admin: admin@marketplace.com / admin123
+# Admin Login: admin@marketplace.com / admin123
 ```
 
 ### Option B: Manual Setup
@@ -94,7 +94,7 @@ mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
 # Verify all services are running
 ./scripts/check-services.sh
 
-# Terminal 4: Seed MongoDB with marketplace data
+# Terminal 4: Seed MongoDB with marketplace data (includes admin user)
 mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
 ```
 
@@ -143,6 +143,33 @@ The marketplace will be available at:
 - **Frontend**: http://localhost:3000
 - **API Gateway**: http://localhost:8080
 
+## � Datagbase Setup
+
+### Seeding Options
+
+**Option 1: Full Marketplace Data (Recommended)**
+```bash
+# Seeds products AND creates admin user
+mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
+```
+
+**Option 2: Products Only**
+```bash
+# Seeds 2000 products but NO admin user
+mongosh mongodb://localhost:27017/eds < scripts/seed-mongo.js
+```
+
+**Option 3: Admin User Only**
+```bash
+# Creates admin user without affecting existing products
+mongosh mongodb://localhost:27017/eds < scripts/create-admin-user.js
+```
+
+### ⚠️ Important Notes
+- **Always use Option 1** for first-time setup
+- If you get "invalid credentials" for admin login, you likely used Option 2
+- The admin user credentials are: `admin@marketplace.com` / `admin123`
+
 ## 🚀 Using the Marketplace
 
 ### Access the Application
@@ -150,8 +177,10 @@ The marketplace will be available at:
 2. **Admin Panel**: Login with `admin@marketplace.com` / `admin123`
 
 ### Demo Accounts
-- **Admin**: admin@marketplace.com / admin123
+- **Admin**: admin@marketplace.com / admin123 (created by seed script)
 - **Customer**: Register a new account or use the demo interface
+
+> **Note**: If you get "invalid credentials" when logging in as admin, make sure you ran the marketplace seed script: `mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js`
 
 ### Key Features to Test
 1. **Product Search & Filtering**: Use the search bar and category filters
@@ -327,6 +356,17 @@ See [TESTING_GUIDE.md](TESTING_GUIDE.md) for detailed instructions.
 - **API calls failing**: Verify backend services are running
 - **CORS errors**: Check API Gateway CORS configuration
 - **Build errors**: Ensure Node.js 16+ is installed
+
+### Authentication Issues
+- **"Invalid credentials" for admin**: Run the full marketplace seed script:
+  ```bash
+  mongosh mongodb://localhost:27017/eds < scripts/seed-marketplace.js
+  ```
+- **Admin user doesn't exist**: Create admin user only:
+  ```bash
+  mongosh mongodb://localhost:27017/eds < scripts/create-admin-user.js
+  ```
+- **Can't register new users**: Ensure user-service is running on port 8083
 
 ### Performance Issues
 - **Slow product search**: Check MongoDB indexes and query optimization
