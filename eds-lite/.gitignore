@@ -328,3 +328,34 @@ docs/generated/
 notes.txt
 todo.txt
 scratch.*
+# Temporary files
+*.tmp
+*.temp
+dump.rdb
+cache-test-results-*.txt
+*-report-*.txt
+
+# Log files
+logs/
+*.log
+*.pid
+
+# Maven
+target/
+*.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Node modules (already there but ensuring)
+node_modules/
+npm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

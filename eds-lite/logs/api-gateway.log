@@ -38,41 +38,34 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2025-11-22T00:53:11.513-08:00  INFO 99185 --- [           main] com.eds.gateway.ApiGatewayApplication    : Starting ApiGatewayApplication using Java 25.0.1 with PID 99185 (/Users/spartan/Desktop/CMPE 273 Project/eds-lite/api-gateway/target/classes started by spartan in /Users/spartan/Desktop/CMPE 273 Project/eds-lite/api-gateway)
-2025-11-22T00:53:11.513-08:00 DEBUG 99185 --- [           main] com.eds.gateway.ApiGatewayApplication    : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-22T00:53:11.514-08:00  INFO 99185 --- [           main] com.eds.gateway.ApiGatewayApplication    : No active profile set, falling back to 1 default profile: "default"
-2025-11-22T00:53:11.750-08:00  INFO 99185 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=bc53c242-bdda-3e23-a93d-6c3f0ba79ef4
+2025-11-22T22:31:57.097-08:00  INFO 84940 --- [           main] com.eds.gateway.ApiGatewayApplication    : Starting ApiGatewayApplication using Java 25.0.1 with PID 84940 (/Users/spartan/Desktop/CMPE 273 Project/eds-lite/api-gateway/target/classes started by spartan in /Users/spartan/Desktop/CMPE 273 Project/eds-lite/api-gateway)
+2025-11-22T22:31:57.098-08:00 DEBUG 84940 --- [           main] com.eds.gateway.ApiGatewayApplication    : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-22T22:31:57.098-08:00  INFO 84940 --- [           main] com.eds.gateway.ApiGatewayApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-11-22T22:31:57.359-08:00  INFO 84940 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=bc53c242-bdda-3e23-a93d-6c3f0ba79ef4
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
 WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/Users/spartan/.m2/repository/io/netty/netty-common/4.1.101.Final/netty-common-4.1.101.Final.jar)
 WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
 WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
-2025-11-22T00:53:11.968-08:00  INFO 99185 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
-2025-11-22T00:53:12.025-08:00  INFO 99185 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2025-11-22T00:53:12.113-08:00  INFO 99185 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
-2025-11-22T00:53:12.128-08:00  INFO 99185 --- [           main] com.eds.gateway.ApiGatewayApplication    : Started ApiGatewayApplication in 0.761 seconds (process running for 0.914)
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  09:03 min
-[INFO] Finished at: 2025-11-22T01:02:13-08:00
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.0:run (default-cli) on project api-gateway: Process terminated with exit code: 143 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2025-11-22T22:31:57.603-08:00  INFO 84940 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-11-22T22:31:57.660-08:00  INFO 84940 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-11-22T22:31:57.757-08:00  INFO 84940 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
+2025-11-22T22:31:57.780-08:00  INFO 84940 --- [           main] com.eds.gateway.ApiGatewayApplication    : Started ApiGatewayApplication in 0.835 seconds (process running for 0.977)
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by io.netty.util.internal.NativeLibraryUtil in an unnamed module (file:/Users/spartan/.m2/repository/io/netty/netty-common/4.1.101.Final/netty-common-4.1.101.Final.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2025-11-22T22:32:25.153-08:00 ERROR 84940 --- [ctor-http-nio-2] i.n.r.d.DnsServerAddressStreamProviders  : Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
