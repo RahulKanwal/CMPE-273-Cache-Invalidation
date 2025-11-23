@@ -1,0 +1,387 @@
+.cache-architecture {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.cache-architecture h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.architecture-diagram {
+  position: relative;
+  min-height: 300px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.components {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 120px;
+  position: relative;
+  animation: slideInUp 0.6s ease-out both;
+  transition: all 0.3s ease;
+}
+
+.component:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.component.client {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.component.catalog-service {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.component.redis-cache {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  position: relative;
+}
+
+.component.mongodb {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: white;
+}
+
+.component.kafka {
+  background: linear-gradient(135deg, #fa709a, #fee140);
+  color: white;
+}
+
+.component-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.component-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cache-status {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.cache-activity {
+  display: flex;
+  gap: 3px;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.activity-dot.hit {
+  background: #28a745;
+}
+
+.activity-dot.miss {
+  background: #ffc107;
+}
+
+.activity-dot.invalidation {
+  background: #dc3545;
+}
+
+.activity-dot.update {
+  background: #007bff;
+}
+
+.connections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connection {
+  position: absolute;
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.connection-line {
+  height: 2px;
+  background: linear-gradient(90deg, #007bff, #6610f2);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.connection-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: flow 2s infinite;
+}
+
+.connection.cache-check .connection-line {
+  background: linear-gradient(90deg, #28a745, #20c997);
+}
+
+.connection.query .connection-line {
+  background: linear-gradient(90deg, #ffc107, #fd7e14);
+}
+
+.connection.invalidation .connection-line {
+  background: linear-gradient(90deg, #dc3545, #e83e8c);
+}
+
+.connection-label {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.connection:hover .connection-label {
+  opacity: 1;
+}
+
+.data-flow {
+  margin-bottom: 25px;
+}
+
+.data-flow h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.flow-steps {
+  display: grid;
+  gap: 10px;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  animation: slideInLeft 0.6s ease-out both;
+  animation-delay: calc(var(--step-index, 0) * 0.1s);
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  background: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.step-description {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.recent-events h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.events-list {
+  display: grid;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.event {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #ddd;
+  animation: slideInRight 0.4s ease-out;
+}
+
+.event.hit {
+  border-left-color: #28a745;
+  background: #d4edda;
+}
+
+.event.miss {
+  border-left-color: #ffc107;
+  background: #fff3cd;
+}
+
+.event.invalidation {
+  border-left-color: #dc3545;
+  background: #f8d7da;
+}
+
+.event.update {
+  border-left-color: #007bff;
+  background: #d1ecf1;
+}
+
+.event-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.event-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: #495057;
+}
+
+.event-time {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .components {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .component {
+    min-width: 100px;
+  }
+  
+  .architecture-diagram {
+    min-height: 400px;
+    padding: 20px;
+  }
+  
+  .flow-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .step-number {
+    align-self: flex-start;
+  }
+}
