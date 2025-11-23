@@ -2,20 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { getProductImage, getValidProductImages, handleImageError } from '../utils/imageUtils';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { user } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [showRatingForm, setShowRatingForm] = useState(false);
+  const [hasUserRated, setHasUserRated] = useState(false);
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
 
   useEffect(() => {
     fetchProduct();
-  }, [id]);
+    if (user) {
+      checkUserRated();
+    }
+  }, [id, user]);
 
   const fetchProduct = async () => {
     try {
@@ -25,6 +34,19 @@ const ProductDetail = () => {
       console.error('Error fetching product:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const checkUserRated = async () => {
+    try {
+      const response = await axios.get(`/api/catalog/products/${id}/reviews/user-reviewed`, {
+        headers: {
+          'X-User-Id': user.email
+        }
+      });
+      setHasUserRated(response.data);
+    } catch (error) {
+      console.error('Error checking user rating status:', error);
     }
   };
 
@@ -52,6 +74,70 @@ const ProductDetail = () => {
     }
     
     return stars.join('');
+  };
+
+  const renderInteractiveStars = () => {
+    const stars = [];
+    
+    for (let i = 1; i <= 5; i++) {
+      const isActive = i <= (hoverRating || selectedRating);
+      stars.push(
+        <span
+          key={i}
+          onClick={() => setSelectedRating(i)}
+          onMouseEnter={() => setHoverRating(i)}
+          onMouseLeave={() => setHoverRating(0)}
+          style={{
+            cursor: 'pointer',
+            fontSize: '28px',
+            color: isActive ? '#ffc107' : '#e9ecef',
+            marginRight: '5px',
+            transition: 'color 0.2s ease, transform 0.1s ease'
+          }}
+          onMouseDown={(e) => e.target.style.transform = 'scale(0.95)'}
+          onMouseUp={(e) => e.target.style.transform = 'scale(1)'}
+        >
+          ★
+        </span>
+      );
+    }
+    
+    return stars;
+  };
+
+  const handleSubmitRating = async () => {
+    if (!user) {
+      alert('Please log in to rate this product');
+      return;
+    }
+
+    if (selectedRating === 0) {
+      alert('Please select a rating');
+      return;
+    }
+
+    try {
+      await axios.post(`/api/catalog/products/${id}/reviews`, {
+        rating: selectedRating,
+        comment: '', // Empty comment for rating-only
+        userName: `${user.firstName} ${user.lastName}`
+      }, {
+        headers: {
+          'X-User-Id': user.email
+        }
+      });
+
+      // Reset form and refresh data
+      setSelectedRating(0);
+      setHoverRating(0);
+      setShowRatingForm(false);
+      setHasUserRated(true);
+      fetchProduct(); // Refresh to get updated rating
+      
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+      alert('Failed to submit rating: ' + (error.response?.data || error.message));
+    }
   };
 
   if (loading) {
@@ -137,17 +223,21 @@ const ProductDetail = () => {
           
           <h1 style={{ marginBottom: '15px' }}>{product.name}</h1>
           
-          {product.rating && (
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '10px', 
-              marginBottom: '15px' 
-            }}>
-              <span style={{ fontSize: '18px' }}>{renderStars(product.rating)}</span>
-              <span>({product.reviewCount || 0} reviews)</span>
-            </div>
-          )}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '10px', 
+            marginBottom: '15px' 
+          }}>
+            {product.rating && product.rating > 0 ? (
+              <>
+                <span style={{ fontSize: '18px' }}>{renderStars(product.rating)}</span>
+                <span>({product.reviewCount || 0} review{product.reviewCount !== 1 ? 's' : ''})</span>
+              </>
+            ) : (
+              <span style={{ color: '#999', fontSize: '16px' }}>No reviews yet</span>
+            )}
+          </div>
 
           <div style={{ 
             fontSize: '28px', 
@@ -242,6 +332,91 @@ const ProductDetail = () => {
               textAlign: 'center'
             }}>
               ⭐ Featured Product
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Rating Section */}
+      <div style={{ marginTop: '40px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <h3>Rate this Product</h3>
+          {user ? (
+            !hasUserRated ? (
+              <button 
+                onClick={() => setShowRatingForm(!showRatingForm)}
+                className="btn btn-primary"
+              >
+                Rate Product
+              </button>
+            ) : (
+              <span style={{ color: '#28a745', fontSize: '14px' }}>
+                ✓ You have rated this product
+              </span>
+            )
+          ) : (
+            <span style={{ color: '#666', fontSize: '14px' }}>
+              Login to rate this product
+            </span>
+          )}
+        </div>
+
+        {/* Rating Form */}
+        {showRatingForm && (
+          <div className="card" style={{ padding: '20px', marginBottom: '20px' }}>
+            <h4>Rate this Product</h4>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', marginBottom: '10px', fontWeight: '500' }}>
+                Select your rating:
+              </label>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {renderInteractiveStars()}
+                <span style={{ marginLeft: '10px', fontSize: '16px', color: '#666' }}>
+                  {selectedRating > 0 ? `${selectedRating} star${selectedRating !== 1 ? 's' : ''}` : 'Click to rate'}
+                </span>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button 
+                onClick={handleSubmitRating}
+                className="btn btn-primary"
+                disabled={selectedRating === 0}
+              >
+                Submit Rating
+              </button>
+              <button 
+                onClick={() => {
+                  setShowRatingForm(false);
+                  setSelectedRating(0);
+                  setHoverRating(0);
+                }}
+                className="btn btn-secondary"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Current Rating Display */}
+        <div className="card" style={{ padding: '20px' }}>
+          <h4>Customer Ratings</h4>
+          {product.rating && product.rating > 0 ? (
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+              <div style={{ fontSize: '48px', marginBottom: '10px' }}>
+                {product.rating.toFixed(1)}
+              </div>
+              <div style={{ fontSize: '18px', marginBottom: '10px' }}>
+                {renderStars(product.rating)}
+              </div>
+              <div style={{ color: '#666' }}>
+                Based on {product.reviewCount || 0} rating{product.reviewCount !== 1 ? 's' : ''}
+              </div>
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+              <p>No ratings yet. Be the first to rate this product!</p>
             </div>
           )}
         </div>

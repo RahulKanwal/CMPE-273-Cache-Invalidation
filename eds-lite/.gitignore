@@ -1,0 +1,330 @@
+# EDS Marketplace - Git Ignore File
+
+# ===== JAVA / MAVEN =====
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== NODE.JS / REACT =====
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# ===== REACT SPECIFIC =====
+# Production build
+build/
+
+# ===== IDE / EDITOR FILES =====
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== OPERATING SYSTEM FILES =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== DATABASE FILES =====
+# H2 Database
+*.db
+*.h2.db
+*.mv.db
+*.trace.db
+
+# SQLite
+*.sqlite
+*.sqlite3
+
+# ===== LOGS AND METRICS =====
+# Application logs
+logs/
+*.log
+log/
+
+# Metrics files (from your EDS project)
+/tmp/metrics/
+metrics/
+*.jsonl
+
+# ===== KAFKA / REDIS / MONGODB =====
+# Local data directories
+/tmp/kafka-logs/
+/tmp/redis-data/
+/tmp/mongodb-data/
+kafka-logs/
+redis-data/
+mongodb-data/
+
+# ===== SPRING BOOT =====
+# Spring Boot DevTools
+.spring-boot-devtools.properties
+
+# ===== TESTING =====
+# Test results
+test-results/
+junit/
+coverage/
+
+# k6 test results
+k6-results/
+*.har
+
+# ===== SECURITY =====
+# Environment variables and secrets
+.env*
+!.env.example
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# ===== BACKUP FILES =====
+*.bak
+*.backup
+*.old
+*.orig
+
+# ===== TEMPORARY FILES =====
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# ===== DOCKER (if you add Docker later) =====
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# ===== MISC =====
+# Thumbnails
+*.thumb
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+
+# ===== PROJECT SPECIFIC =====
+# EDS Marketplace specific ignores
+/logs/
+*.pid
+/tmp/
+.cache/
+
+# Ignore any local configuration overrides
+*-local.*
+local.*
+
+# Ignore any generated documentation
+docs/generated/
+
+# Ignore any local scripts or notes
+notes.txt
+todo.txt
+scratch.*

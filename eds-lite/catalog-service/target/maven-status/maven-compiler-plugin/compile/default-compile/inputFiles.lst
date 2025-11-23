@@ -7,12 +7,17 @@
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/config/KafkaConfig.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/model/CacheInvalidationEvent.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/service/CacheInvalidationConsumer.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/model/ReviewRequest.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/repository/ReviewRepository.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/repository/ProductRepositoryImpl.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/repository/ProductRepositoryCustom.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/aspect/CacheMetricsAspect.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/service/ReviewService.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/model/ProductCreateRequest.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/MetricsWriter.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/CatalogServiceApplication.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/model/ProductSearchResponse.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/config/RedisConfig.java
 /Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/service/ProductService.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/controller/ReviewController.java
+/Users/spartan/Desktop/CMPE 273 Project/eds-lite/catalog-service/src/main/java/com/eds/catalog/model/Review.java

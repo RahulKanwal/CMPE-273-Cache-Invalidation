@@ -177,6 +177,73 @@ main {
   transition: all 0.2s ease;
 }
 
+/* Rating System Styles */
+.rating-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.rating-star {
+  cursor: pointer;
+  font-size: 28px;
+  transition: color 0.2s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.rating-star:hover {
+  transform: scale(1.1);
+}
+
+.rating-display {
+  text-align: center;
+  padding: 20px;
+}
+
+.rating-score {
+  font-size: 48px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.rating-stars-display {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.rating-count {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Product Card Rating Badge */
+.rating-badge {
+  background: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.rating-badge.excellent {
+  background: #28a745; /* Green for 4.5+ */
+}
+
+.rating-badge.good {
+  background: #007bff; /* Blue for 3.5-4.4 */
+}
+
+.rating-badge.average {
+  background: #ffc107; /* Yellow for 2.5-3.4 */
+  color: #000;
+}
+
+.rating-badge.poor {
+  background: #dc3545; /* Red for below 2.5 */
+}
+
 .product-card {
   background: white;
   border-radius: 8px;
