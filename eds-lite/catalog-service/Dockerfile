@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /app
 
@@ -16,4 +16,4 @@ RUN mvn clean package -DskipTests
 EXPOSE 8081
 
 # Run the application
-CMD ["java", "-jar", "target/catalog-service-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/catalog-service-1.0.0.jar"]

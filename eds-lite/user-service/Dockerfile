@@ -2,9 +2,9 @@ FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /app
 
-# Copy Maven files from order-service directory
-COPY eds-lite/order-service/pom.xml .
-COPY eds-lite/order-service/src ./src
+# Copy Maven files
+COPY pom.xml .
+COPY src ./src
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y maven
 RUN mvn clean package -DskipTests
 
 # Expose port
-EXPOSE 8082
+EXPOSE 8083
 
 # Run the application
-CMD ["java", "-jar", "target/order-service-1.0.0.jar"]
+CMD ["java", "-jar", "target/user-service-1.0.0.jar"]
