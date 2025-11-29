@@ -187,25 +187,29 @@ curl https://catalog-service-production-8579.up.railway.app/products/featured
 
 ## 💡 Alternative: Deploy Everything on Render (Free)
 
-If Railway is giving you trouble, you can deploy all 4 backend services on Render:
+If Railway is giving you trouble, you can deploy all 4 backend services on Render.
+
+**See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for complete step-by-step guide.**
 
 **Pros:**
 - ✅ Completely free
 - ✅ Unlimited services
 - ✅ Simple setup
+- ✅ No credit card required
 
 **Cons:**
 - ⚠️ Services sleep after 15 min inactivity
 - ⚠️ 30-60 second cold start
 - ⚠️ Slower performance
 
-**How to do it:**
-1. Create 4 web services on Render
-2. Use Dockerfile for each
-3. Set environment variables
-4. Deploy
+**Quick Summary:**
+1. Sign up at https://render.com/ with GitHub
+2. Create 4 web services (one for each backend)
+3. Use Docker runtime with `Dockerfile.[service-name]`
+4. Set environment variables
+5. Deploy and wait 5-10 minutes per service
 
-But your current setup (Railway + Render) is better because Railway services don't sleep!
+Your current setup (Railway + Render) is better because Railway services don't sleep, but all-Render works fine if you're okay with cold starts!
 
 ---
 
