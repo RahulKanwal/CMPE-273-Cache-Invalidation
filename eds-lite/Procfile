@@ -1,0 +1,5 @@
+# Railway deployment processes
+api-gateway: cd api-gateway && mvn spring-boot:run
+catalog-service: cd catalog-service && mvn spring-boot:run  
+order-service: cd order-service && mvn spring-boot:run
+user-service: cd user-service && mvn spring-boot:run

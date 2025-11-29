@@ -1,14 +1,16 @@
 # 🚀 EDS Marketplace Deployment Guide
 
-Deploy your EDS Marketplace to the cloud using free services with GitHub integration.
+**⚠️ This file contains the complete detailed guide. For a simpler version, see [SIMPLE_DEPLOYMENT_GUIDE.md](SIMPLE_DEPLOYMENT_GUIDE.md)**
 
-## 🏗️ Deployment Architecture
+## 🏗️ Your Current Deployment Architecture
 
 - **Frontend (React)**: Vercel (Free)
-- **Backend Services**: Railway (Free tier - $5/month after trial)
+- **Backend Services**: Railway (3 services) + Render (1 service)
 - **Database**: MongoDB Atlas (Free tier - 512MB)
 - **Cache**: Upstash Redis (Free tier - 10K requests/day)
 - **Message Queue**: Confluent Cloud (Free tier - 1 cluster, unlimited topics)
+
+**Total Cost: FREE**
 
 ## 📋 Prerequisites
 
