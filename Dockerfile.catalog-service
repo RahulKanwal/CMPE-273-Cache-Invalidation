@@ -11,16 +11,22 @@ RUN mvn dependency:go-offline -B
 COPY eds-lite/catalog-service/src ./src
 RUN mvn clean package -DskipTests -B
 
+# Extract layers for better caching
+RUN java -Djarmode=layertools -jar target/catalog-service-1.0.0.jar extract
+
 # Runtime stage
 FROM eclipse-temurin:21-jre-jammy
 
 WORKDIR /app
 
-# Copy only the built jar from build stage
-COPY --from=build /app/target/catalog-service-1.0.0.jar app.jar
+# Copy layers from build stage
+COPY --from=build /app/dependencies/ ./
+COPY --from=build /app/spring-boot-loader/ ./
+COPY --from=build /app/snapshot-dependencies/ ./
+COPY --from=build /app/application/ ./
 
 # Expose port
 EXPOSE 8081
 
-# Run the application
-CMD ["java", "-jar", "app.jar"]
+# Run using Spring Boot's launcher
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
