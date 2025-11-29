@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
+import API_CONFIG from '../config/api';
 
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -15,14 +16,17 @@ const Home = () => {
   const fetchHomeData = async () => {
     try {
       const [featuredRes, categoriesRes] = await Promise.all([
-        axios.get('/api/catalog/products/featured'),
-        axios.get('/api/catalog/products/categories')
+        axios.get(`${API_CONFIG.CATALOG_SERVICE_URL}/products/featured`),
+        axios.get(`${API_CONFIG.CATALOG_SERVICE_URL}/products/categories`)
       ]);
       
-      setFeaturedProducts(featuredRes.data);
-      setCategories(categoriesRes.data);
+      setFeaturedProducts(featuredRes.data || []);
+      setCategories(categoriesRes.data || []);
     } catch (error) {
       console.error('Error fetching home data:', error);
+      // Set empty arrays on error to prevent map errors
+      setFeaturedProducts([]);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
