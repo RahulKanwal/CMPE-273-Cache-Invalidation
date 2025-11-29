@@ -1,0 +1,26 @@
+server:
+  port: ${PORT:8083}
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.eds: INFO
+    org.springframework.security: WARN
+    org.springframework.data.mongodb: WARN
