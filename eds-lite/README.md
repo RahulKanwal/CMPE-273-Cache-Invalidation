@@ -20,7 +20,23 @@ A full-featured marketplace application built with microservices architecture, d
 - **user-service** (8083): JWT authentication and user management
 - **marketplace-ui** (3000): React frontend with responsive design
 
-## Prerequisites
+## 🚀 Cloud Deployment
+
+**Want to deploy this app to production?**
+
+📖 **Start here:** [DEPLOYMENT_INDEX.md](DEPLOYMENT_INDEX.md) - Find the right deployment guide for you
+
+**Quick links:**
+- 🏃 **Deploy in 30 minutes:** [DEPLOY_NOW.md](DEPLOY_NOW.md)
+- 🔧 **Fix Railway errors:** [RAILWAY_SETUP.md](RAILWAY_SETUP.md)
+- 📋 **Step-by-step checklist:** [QUICK_DEPLOY.md](QUICK_DEPLOY.md)
+- 🤔 **Compare platforms:** [PLATFORM_COMPARISON.md](PLATFORM_COMPARISON.md)
+
+**Recommended:** Railway ($5/month) + Vercel (free) + Confluent Cloud Kafka (free)
+
+---
+
+## Prerequisites (Local Development)
 
 - Java 21
 - Maven 3.8+
