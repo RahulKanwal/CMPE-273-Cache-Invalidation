@@ -16,22 +16,18 @@ public class CorsConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         
-        // Allow specific origins
-        corsConfig.setAllowedOrigins(Arrays.asList(
-            "https://marketplace-ui-tau.vercel.app",
-            "http://localhost:3000"
-        ));
+        // Use allowedOriginPatterns instead of allowedOrigins for better compatibility
+        corsConfig.addAllowedOriginPattern("https://marketplace-ui-tau.vercel.app");
+        corsConfig.addAllowedOriginPattern("http://localhost:3000");
         
         // Allow all HTTP methods
-        corsConfig.setAllowedMethods(Arrays.asList(
-            "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"
-        ));
+        corsConfig.addAllowedMethod("*");
         
         // Allow all headers
-        corsConfig.setAllowedHeaders(List.of("*"));
+        corsConfig.addAllowedHeader("*");
         
         // Expose all headers
-        corsConfig.setExposedHeaders(List.of("*"));
+        corsConfig.addExposedHeader("*");
         
         // Allow credentials
         corsConfig.setAllowCredentials(true);
