@@ -16,8 +16,8 @@ const Home = () => {
   const fetchHomeData = async () => {
     try {
       const [featuredRes, categoriesRes] = await Promise.all([
-        axios.get(`${API_CONFIG.CATALOG_SERVICE_URL}/products/featured`),
-        axios.get(`${API_CONFIG.CATALOG_SERVICE_URL}/products/categories`)
+        axios.get(`${API_CONFIG.API_GATEWAY_URL}/api/catalog/products/featured`),
+        axios.get(`${API_CONFIG.API_GATEWAY_URL}/api/catalog/products/categories`)
       ]);
       
       setFeaturedProducts(featuredRes.data || []);
