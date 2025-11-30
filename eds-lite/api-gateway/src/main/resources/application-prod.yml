@@ -11,30 +11,18 @@ spring:
             - Path=/api/catalog/**
           filters:
             - StripPrefix=2
-            - RemoveResponseHeader=Access-Control-Allow-Origin
-            - RemoveResponseHeader=Access-Control-Allow-Methods
-            - RemoveResponseHeader=Access-Control-Allow-Headers
-            - RemoveResponseHeader=Access-Control-Max-Age
         - id: order-service
           uri: ${ORDER_SERVICE_URL:http://localhost:8082}
           predicates:
             - Path=/api/orders/**
           filters:
             - StripPrefix=1
-            - RemoveResponseHeader=Access-Control-Allow-Origin
-            - RemoveResponseHeader=Access-Control-Allow-Methods
-            - RemoveResponseHeader=Access-Control-Allow-Headers
-            - RemoveResponseHeader=Access-Control-Max-Age
         - id: user-service
           uri: ${USER_SERVICE_URL:http://localhost:8083}
           predicates:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
-            - RemoveResponseHeader=Access-Control-Allow-Origin
-            - RemoveResponseHeader=Access-Control-Allow-Methods
-            - RemoveResponseHeader=Access-Control-Allow-Headers
-            - RemoveResponseHeader=Access-Control-Max-Age
 
 management:
   endpoints:
