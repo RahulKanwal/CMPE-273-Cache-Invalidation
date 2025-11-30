@@ -32,9 +32,11 @@ const Admin = () => {
     fetchCategories();
   }, [user, navigate]);
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api-gateway-lpnh.onrender.com';
+
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/api/catalog/products?size=50');
+      const response = await axios.get(`${API_BASE_URL}/api/catalog/products?size=50`);
       setProducts(response.data.products || []);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -45,7 +47,7 @@ const Admin = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/api/catalog/products/categories');
+      const response = await axios.get(`${API_BASE_URL}/api/catalog/products/categories`);
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -70,7 +72,7 @@ const Admin = () => {
     try {
       const imagesArray = formData.images ? formData.images.split(',').map(img => img.trim()).filter(img => img) : [];
       
-      await axios.post(`/api/catalog/products/${productId}`, {
+      await axios.post(`${API_BASE_URL}/api/catalog/products/${productId}`, {
         name: formData.name,
         description: formData.description,
         price: parseFloat(formData.price),
@@ -112,7 +114,7 @@ const Admin = () => {
       const tagsArray = formData.tags ? formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
       const imagesArray = formData.images ? formData.images.split(',').map(img => img.trim()).filter(img => img) : [];
       
-      await axios.post('/api/catalog/products', {
+      await axios.post(`${API_BASE_URL}/api/catalog/products`, {
         name: formData.name,
         description: formData.description,
         price: parseFloat(formData.price),
@@ -136,7 +138,7 @@ const Admin = () => {
   const handleDelete = async (productId, productName) => {
     if (window.confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
       try {
-        await axios.delete(`/api/catalog/products/${productId}`);
+        await axios.delete(`${API_BASE_URL}/api/catalog/products/${productId}`);
         fetchProducts(); // Refresh the list
         fetchCategories(); // Refresh categories in case the last product of a category was deleted
       } catch (error) {

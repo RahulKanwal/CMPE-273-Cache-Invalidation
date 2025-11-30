@@ -6,13 +6,13 @@ spring:
     mongodb:
       uri: ${MONGODB_URI}
   cache:
-    type: redis
+    type: ${CACHE_TYPE:none}
     redis:
       time-to-live: 300000
   redis:
-    host: ${REDIS_HOST}
+    host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD}
+    password: ${REDIS_PASSWORD:}
     ssl: ${REDIS_SSL:false}
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}

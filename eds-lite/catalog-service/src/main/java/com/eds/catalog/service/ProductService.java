@@ -25,7 +25,6 @@ import java.util.List;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-    private final KafkaTemplate<String, CacheInvalidationEvent> kafkaTemplate;
     private final Counter invalidationsSent;
     private final Counter staleReadsDetected;
     private final Counter cacheHits;
@@ -33,15 +32,16 @@ public class ProductService {
     private final Timer getProductTimer;
     private final CacheManager cacheManager;
     
+    @org.springframework.beans.factory.annotation.Autowired(required = false)
+    private KafkaTemplate<String, CacheInvalidationEvent> kafkaTemplate;
+    
     @Value("${cache.mode:ttl_invalidate}")
     private String cacheMode;
 
     public ProductService(ProductRepository productRepository,
-                         KafkaTemplate<String, CacheInvalidationEvent> kafkaTemplate,
                          MeterRegistry meterRegistry,
                          CacheManager cacheManager) {
         this.productRepository = productRepository;
-        this.kafkaTemplate = kafkaTemplate;
         this.cacheManager = cacheManager;
         this.invalidationsSent = Counter.builder("invalidations_sent").register(meterRegistry);
         this.staleReadsDetected = Counter.builder("stale_reads_detected").register(meterRegistry);
@@ -239,6 +239,11 @@ public class ProductService {
     }
 
     private void publishCacheInvalidation(String productId, Integer version) {
+        if (kafkaTemplate == null) {
+            System.out.println("Kafka not available, skipping cache invalidation event");
+            return;
+        }
+        
         // Spring Cache uses "cacheName::key" format in Redis
         // So the key is just the productId, and Spring adds "productById::" prefix
         CacheInvalidationEvent event = new CacheInvalidationEvent(

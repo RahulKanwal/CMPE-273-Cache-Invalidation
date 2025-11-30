@@ -4,7 +4,9 @@ import com.eds.catalog.model.CacheInvalidationEvent;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -14,17 +16,17 @@ import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@ConditionalOnProperty(name = "spring.cache.type", havingValue = "redis")
 public class CacheInvalidationConsumer {
-    private final RedisTemplate<String, Object> redisTemplate;
+    @Autowired(required = false)
+    private RedisTemplate<String, Object> redisTemplate;
     private final Counter invalidationsReceived;
     private final Timer inconsistencyWindowTimer;
     
     @Value("${cache.mode:ttl_invalidate}")
     private String cacheMode;
 
-    public CacheInvalidationConsumer(RedisTemplate<String, Object> redisTemplate,
-                                    MeterRegistry meterRegistry) {
-        this.redisTemplate = redisTemplate;
+    public CacheInvalidationConsumer(MeterRegistry meterRegistry) {
         this.invalidationsReceived = Counter.builder("invalidations_received").register(meterRegistry);
         this.inconsistencyWindowTimer = Timer.builder("inconsistency_window").register(meterRegistry);
     }
@@ -40,9 +42,11 @@ public class CacheInvalidationConsumer {
         // Delete keys from Redis
         // Note: Spring Cache uses "cacheName::key" format in Redis
         // The event contains just the productId, we need to add the cache prefix
-        for (String productId : event.getKeys()) {
-            // Delete the actual Redis key (Spring Cache format: productById::1)
-            redisTemplate.delete("productById::" + productId);
+        if (redisTemplate != null) {
+            for (String productId : event.getKeys()) {
+                // Delete the actual Redis key (Spring Cache format: productById::1)
+                redisTemplate.delete("productById::" + productId);
+            }
         }
 
         // Calculate inconsistency window (time from event creation to processing)
