@@ -4,6 +4,12 @@ server:
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "${CORS_ALLOWED_ORIGINS:*}"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: catalog-service
           uri: ${CATALOG_SERVICE_URL:http://localhost:8081}
@@ -16,38 +22,25 @@ spring:
           predicates:
             - Path=/api/orders/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
         - id: user-service
           uri: ${USER_SERVICE_URL:http://localhost:8083}
           predicates:
             - Path=/api/auth/**
           filters:
-            - StripPrefix=2
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: 
-              - ${FRONTEND_URL:http://localhost:3000}
-              - "https://*.vercel.app"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders: "*"
-            allowCredentials: true
+            - StripPrefix=1
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,gateway
-  endpoint:
-    health:
-      show-details: when-authorized
+        include: health,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 logging:
   level:
     com.eds: INFO
-    org.springframework.cloud.gateway: INFO
+    org.springframework.cloud.gateway: DEBUG
