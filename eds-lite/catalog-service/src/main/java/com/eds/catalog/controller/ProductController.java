@@ -21,12 +21,18 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable String id) {
-        Product product = productService.getProductWithCacheMetrics(id);
-        if (product == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<?> getProduct(@PathVariable String id) {
+        try {
+            Product product = productService.getProductWithCacheMetrics(id);
+            if (product == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(product);
+        } catch (Exception e) {
+            System.err.println("Error fetching product " + id + ": " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error fetching product: " + e.getMessage());
         }
-        return ResponseEntity.ok(product);
     }
 
     @GetMapping
