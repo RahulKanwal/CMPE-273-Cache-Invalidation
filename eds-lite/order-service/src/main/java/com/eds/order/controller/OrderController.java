@@ -34,5 +34,15 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<java.util.List<Order>> getOrdersByCustomer(@PathVariable String customerId) {
+        try {
+            java.util.List<Order> orders = orderService.getOrdersByCustomer(customerId);
+            return ResponseEntity.ok(orders);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
 
