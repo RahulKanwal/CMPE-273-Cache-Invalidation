@@ -64,50 +64,65 @@ public class ProductService {
 
     public Product getProductWithCacheMetrics(String id) {
         try {
-            return getProductTimer.recordCallable(() -> {
-                // Use a more reliable approach: manually handle caching with proper metrics
-                Cache cache = cacheManager.getCache("productById");
-                Product cachedProduct = null;
-                boolean wasInCache = false;
-                
-                // Try to get from cache first
-                if (cache != null) {
+            System.out.println("=== getProductWithCacheMetrics called for id: " + id + " ===");
+            
+            // Simplified version without timer to isolate the issue
+            Cache cache = cacheManager.getCache("productById");
+            Product cachedProduct = null;
+            
+            // Try to get from cache first
+            if (cache != null) {
+                try {
                     Cache.ValueWrapper valueWrapper = cache.get(id);
                     if (valueWrapper != null) {
                         cachedProduct = (Product) valueWrapper.get();
-                        wasInCache = true;
                         cacheHits.increment();
+                        System.out.println("Cache HIT for product " + id);
                         
                         // Check for stale reads if caching is enabled
                         if (!"none".equals(System.getenv().getOrDefault("CACHE_MODE", "ttl_invalidate"))) {
                             Product dbProduct = productRepository.findById(id).orElse(null);
                             if (dbProduct != null && !dbProduct.getVersion().equals(cachedProduct.getVersion())) {
                                 staleReadsDetected.increment();
-                                System.out.println("Stale read detected for product " + id + ": cached version " + cachedProduct.getVersion() + ", DB version " + dbProduct.getVersion());
+                                System.out.println("Stale read detected for product " + id);
                             }
                         }
                         
                         return cachedProduct;
                     }
+                } catch (Exception e) {
+                    System.err.println("Cache read error for product " + id + ": " + e.getMessage());
+                    e.printStackTrace();
                 }
-                
-                // Cache miss - get from database and cache it
-                cacheMisses.increment();
-                Product product = productRepository.findById(id).orElse(null);
-                
-                // Cache the result if we got one
-                if (cache != null && product != null) {
-                    try {
-                        cache.put(id, product);
-                        System.out.println("Cached product " + id + " with version " + product.getVersion());
-                    } catch (Exception e) {
-                        System.err.println("Failed to cache product " + id + ": " + e.getMessage());
-                    }
+            }
+            
+            // Cache miss - get from database and cache it
+            System.out.println("Cache MISS for product " + id);
+            cacheMisses.increment();
+            Product product = productRepository.findById(id).orElse(null);
+            
+            if (product == null) {
+                System.out.println("Product " + id + " not found in database");
+                return null;
+            }
+            
+            System.out.println("Found product " + id + " in database");
+            
+            // Cache the result if we got one
+            if (cache != null) {
+                try {
+                    cache.put(id, product);
+                    System.out.println("Cached product " + id + " with version " + product.getVersion());
+                } catch (Exception e) {
+                    System.err.println("Failed to cache product " + id + ": " + e.getMessage());
+                    e.printStackTrace();
                 }
-                
-                return product;
-            });
+            }
+            
+            return product;
         } catch (Exception e) {
+            System.err.println("=== ERROR in getProductWithCacheMetrics for id: " + id + " ===");
+            e.printStackTrace();
             throw new RuntimeException("Error getting product with metrics: " + id, e);
         }
     }
