@@ -4,6 +4,7 @@ import com.eds.order.model.CreateOrderRequest;
 import com.eds.order.model.Order;
 import com.eds.order.model.OrderEvent;
 import com.eds.order.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,12 +16,12 @@ import java.util.UUID;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final KafkaTemplate<String, OrderEvent> kafkaTemplate;
+    
+    @Autowired(required = false)
+    private KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
-    public OrderService(OrderRepository orderRepository,
-                       KafkaTemplate<String, OrderEvent> kafkaTemplate) {
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.kafkaTemplate = kafkaTemplate;
     }
 
     @Transactional
@@ -37,15 +38,22 @@ public class OrderService {
 
         Order saved = orderRepository.save(order);
 
-        // Publish order event
-        OrderEvent event = new OrderEvent(
-                saved.getId(),
-                OrderEvent.OrderEventType.Created,
-                saved.getCustomerId(),
-                saved.getTotal(),
-                Instant.now()
-        );
-        kafkaTemplate.send("order.events", saved.getId(), event);
+        // Publish order event asynchronously (don't block response)
+        if (kafkaTemplate != null) {
+            try {
+                OrderEvent event = new OrderEvent(
+                        saved.getId(),
+                        OrderEvent.OrderEventType.Created,
+                        saved.getCustomerId(),
+                        saved.getTotal(),
+                        Instant.now()
+                );
+                kafkaTemplate.send("order.events", saved.getId(), event);
+            } catch (Exception e) {
+                // Log error but don't fail the order creation
+                System.err.println("Failed to publish order event: " + e.getMessage());
+            }
+        }
 
         return saved;
     }
