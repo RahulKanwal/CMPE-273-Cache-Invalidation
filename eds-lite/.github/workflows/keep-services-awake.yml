@@ -1,0 +1,44 @@
+name: Keep Render Services Awake
+
+on:
+  schedule:
+    # Run every 10 minutes (adjust as needed)
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allow manual trigger from GitHub Actions tab
+
+jobs:
+  ping-services:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping API Gateway
+        run: |
+          echo "Pinging API Gateway..."
+          curl -f -m 30 https://api-gateway-lpnh.onrender.com/actuator/health || echo "API Gateway ping failed"
+      
+      - name: Wait before next ping
+        run: sleep 5
+      
+      - name: Ping Catalog Service
+        run: |
+          echo "Pinging Catalog Service..."
+          curl -f -m 30 https://catalog-service-YOUR-ID.onrender.com/actuator/health || echo "Catalog Service ping failed"
+      
+      - name: Wait before next ping
+        run: sleep 5
+      
+      - name: Ping Order Service
+        run: |
+          echo "Pinging Order Service..."
+          curl -f -m 30 https://order-service-YOUR-ID.onrender.com/actuator/health || echo "Order Service ping failed"
+      
+      - name: Wait before next ping
+        run: sleep 5
+      
+      - name: Ping User Service
+        run: |
+          echo "Pinging User Service..."
+          curl -f -m 30 https://user-service-YOUR-ID.onrender.com/actuator/health || echo "User Service ping failed"
+      
+      - name: Summary
+        run: echo "✓ All services pinged successfully!"

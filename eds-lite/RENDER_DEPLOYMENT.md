@@ -278,20 +278,29 @@ curl https://catalog-service-xxxx.onrender.com/products/featured
 
 ## 💡 Tips for Free Tier
 
-### Keep Services Awake (Optional)
+### Keep Services Awake (Highly Recommended!)
 
-Use a free uptime monitoring service:
+**The 502 error problem is caused by services sleeping. Here's how to fix it:**
 
-1. Sign up for https://uptimerobot.com/ (free)
-2. Add monitors for each service:
-   - `https://api-gateway-xxxx.onrender.com/actuator/health`
+See the detailed guide: **[KEEP_SERVICES_AWAKE.md](./KEEP_SERVICES_AWAKE.md)**
+
+**Quick Setup (5 minutes):**
+
+1. Sign up for https://uptimerobot.com/ (free, no credit card)
+2. Add 4 monitors (one for each service):
+   - `https://api-gateway-lpnh.onrender.com/actuator/health`
    - `https://catalog-service-xxxx.onrender.com/actuator/health`
    - `https://order-service-xxxx.onrender.com/actuator/health`
    - `https://user-service-xxxx.onrender.com/actuator/health`
-3. Set interval to 14 minutes
-4. Services will stay awake!
+3. Set interval to 5 minutes
+4. Done! Services will stay awake 24/7
 
-**Note:** This uses more of Render's free tier bandwidth.
+**Alternative Options:**
+- Use the included GitHub Actions workflow (automatic)
+- Use the bash script `keep-services-awake.sh` (manual)
+- Use Cron-job.org (similar to UptimeRobot)
+
+**Note:** This uses more of Render's free tier bandwidth, but keeps your app responsive.
 
 ### Optimize Build Times
 
