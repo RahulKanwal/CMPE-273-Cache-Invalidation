@@ -29,7 +29,8 @@ const Checkout = () => {
         items: orderItems
       };
 
-      const response = await axios.post('/api/orders', orderData);
+      const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api-gateway-lpnh.onrender.com';
+      const response = await axios.post(`${API_BASE_URL}/api/orders`, orderData);
       
       if (response.data) {
         clearCart();

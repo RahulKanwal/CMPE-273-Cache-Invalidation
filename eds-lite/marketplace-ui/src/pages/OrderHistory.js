@@ -24,11 +24,12 @@ const OrderHistory = () => {
 
   const fetchOrders = async () => {
     try {
-      // Note: This endpoint would need to be implemented in the order service
-      // For now, we'll show a placeholder
-      setOrders([]);
+      const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api-gateway-lpnh.onrender.com';
+      const response = await axios.get(`${API_BASE_URL}/api/orders/customer/${user.email}`);
+      setOrders(response.data || []);
     } catch (error) {
       console.error('Error fetching orders:', error);
+      setOrders([]);
     } finally {
       setLoading(false);
     }
