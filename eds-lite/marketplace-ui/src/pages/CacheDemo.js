@@ -23,7 +23,7 @@ const CacheDemo = () => {
   const [cacheEvents, setCacheEvents] = useState([]);
 
   const logRef = useRef(null);
-  const testProduct = { id: '1', name: 'Demo Product' };
+  const [testProduct, setTestProduct] = useState(null);
 
   const scenarios = {
     'none': {
@@ -72,6 +72,7 @@ const CacheDemo = () => {
     const startTime = performance.now();
     
     try {
+      const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api-gateway-lpnh.onrender.com';
       const options = {
         method,
         headers: { 'Content-Type': 'application/json' }
@@ -81,7 +82,12 @@ const CacheDemo = () => {
         options.body = JSON.stringify(body);
       }
 
-      const response = await fetch(`http://localhost:8081${endpoint}`, options);
+      const response = await fetch(`${API_BASE_URL}/api/catalog${endpoint}`, options);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
       const data = await response.json();
       const latency = Math.round(performance.now() - startTime);
       
@@ -92,16 +98,40 @@ const CacheDemo = () => {
     }
   };
 
+  // Fetch a test product on component mount
+  useEffect(() => {
+    const fetchTestProduct = async () => {
+      try {
+        const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api-gateway-lpnh.onrender.com';
+        const response = await fetch(`${API_BASE_URL}/api/catalog/products?size=1`);
+        const data = await response.json();
+        if (data.products && data.products.length > 0) {
+          setTestProduct(data.products[0]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch test product:', error);
+      }
+    };
+    fetchTestProduct();
+  }, []);
+
   // Test cache behavior
   const runCacheTest = async () => {
     if (isRunning) return;
+    
+    if (!testProduct) {
+      addLog('❌ No test product available. Please ensure products exist in the catalog.', 'error');
+      return;
+    }
     
     setIsRunning(true);
     setTestResults([]);
     setLogs([]);
     setCacheStatus({ hits: 0, misses: 0, invalidations: 0, currentData: null, lastUpdate: null });
+    setMetrics({ avgLatency: 0, cacheHitRate: 0, staleDataDetected: false });
     
     addLog(`🚀 Starting cache test for scenario: ${scenarios[currentScenario].name}`, 'info');
+    addLog(`📦 Using test product: ${testProduct.name} (ID: ${testProduct.id})`, 'info');
     
     try {
       // Test 1: First read (cache miss expected)
@@ -277,13 +307,16 @@ const CacheDemo = () => {
           <button 
             className={`test-button ${isRunning ? 'running' : ''}`}
             onClick={runCacheTest}
-            disabled={isRunning}
+            disabled={isRunning || !testProduct}
           >
-            {isRunning ? '🔄 Running Test...' : '▶️ Run Cache Test'}
+            {isRunning ? '🔄 Running Test...' : !testProduct ? '⏳ Loading...' : '▶️ Run Cache Test'}
           </button>
           
           <div className="current-scenario">
             <strong>Current Scenario:</strong> {scenarios[currentScenario].name}
+            {testProduct && <div style={{ fontSize: '12px', marginTop: '5px', color: '#666' }}>
+              Test Product: {testProduct.name}
+            </div>}
           </div>
         </div>
 
