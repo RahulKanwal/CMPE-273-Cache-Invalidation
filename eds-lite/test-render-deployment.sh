@@ -24,6 +24,27 @@ echo "Testing: $API_GATEWAY_URL"
 echo "Results will be saved to: $RESULTS_FILE"
 echo ""
 
+# Warm-up check
+echo -e "${YELLOW}Checking if services are warm...${NC}"
+warmup_start=$(date +%s%N)
+warmup_response=$(curl -s -w "\n%{http_code}" "$API_GATEWAY_URL/api/catalog/products/$TEST_PRODUCT_ID" 2>/dev/null)
+warmup_end=$(date +%s%N)
+warmup_latency=$(( (warmup_end - warmup_start) / 1000000 ))
+warmup_status=$(echo "$warmup_response" | tail -n1)
+
+if [ "$warmup_latency" -gt 2000 ]; then
+    echo -e "${YELLOW}⚠ Services are cold (${warmup_latency}ms response)${NC}"
+    echo -e "${YELLOW}Warming up services...${NC}"
+    sleep 3
+    # Second warmup call
+    curl -s "$API_GATEWAY_URL/api/catalog/products/$TEST_PRODUCT_ID" > /dev/null 2>&1
+    sleep 2
+    echo -e "${GREEN}✓ Services warmed up${NC}"
+else
+    echo -e "${GREEN}✓ Services are already warm (${warmup_latency}ms)${NC}"
+fi
+echo ""
+
 # Initialize results file
 cat > "$RESULTS_FILE" << EOF
 Render Deployment Cache Test Results
@@ -139,7 +160,15 @@ log_result ""
 if [ "$latency1" -gt 0 ] && [ "$latency2" -gt 0 ]; then
     improvement=$(( (latency1 - latency2) * 100 / latency1 ))
     
-    if [ "$improvement" -gt 50 ]; then
+    # Check if first read was abnormally slow (cold start)
+    if [ "$latency1" -gt 2000 ]; then
+        log_result "⚠ First read was very slow (${latency1}ms) - likely cold start"
+        log_result "Second read: ${latency2}ms (${improvement}% faster)"
+        log_result ""
+        log_result "Note: Speed improvement may be due to service warm-up, not caching."
+        log_result "To accurately test, run the script again now that services are warm."
+        cache_working="UNCERTAIN"
+    elif [ "$improvement" -gt 50 ]; then
         log_result "✓ Cache hit detected! ${improvement}% faster than first read"
         cache_working="YES"
     elif [ "$improvement" -gt 20 ]; then
@@ -251,7 +280,19 @@ log_result ""
 
 # Determine cache scenario
 log_result "Cache Analysis:"
-if [ "$cache_working" == "YES" ]; then
+if [ "$cache_working" == "UNCERTAIN" ]; then
+    log_result "  ⚠ Cache Status: UNCERTAIN (cold start detected)"
+    log_result "  ⚠ First read was abnormally slow (${latency1}ms)"
+    log_result "  ⚠ This suggests services were sleeping/cold starting"
+    log_result ""
+    log_result "Recommendation: Run the test again immediately to get accurate results."
+    log_result "Now that services are warm, the test will show true cache behavior."
+    log_result ""
+    log_result "If second run also shows fast reads:"
+    log_result "  - Scenario B or C (caching enabled)"
+    log_result "If second run shows slow reads:"
+    log_result "  - Scenario A (no caching)"
+elif [ "$cache_working" == "YES" ]; then
     if [ "$stale_data" == "NO" ]; then
         log_result "  ✓ Cache Status: ENABLED"
         log_result "  ✓ Cache Invalidation: WORKING"
