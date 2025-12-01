@@ -235,10 +235,11 @@ User Request: GET /api/catalog/products/1 (immediately after update)
 - User sees updated price ✅
 - **Total Time: ~250ms**
 
-#### 5. Problem: Concurrent Update on Another Instance
+#### 5. Problem: What Would Happen with Multiple Instances
 
 ```
-Scenario: Multiple catalog-service instances running
+Theoretical Scenario: Multiple catalog-service instances running
+(Not tested in current setup - single instance only)
 ```
 
 **Step 1:** Admin updates product on Instance A
@@ -256,6 +257,8 @@ Scenario: Multiple catalog-service instances running
 - Redis TTL expires: `TTL productById::1` → 0
 - Next request will fetch fresh data
 - **Inconsistency window: 5 minutes** ⚠️
+
+**Note:** This problem is theoretical in the current test setup, which uses a single instance. In production with multiple instances (like on Render), this would be a real issue.
 
 ### Summary - Scenario B
 
@@ -519,6 +522,58 @@ Inconsistency Window: 50-100ms ✅
 
 ## Testing the Scenarios
 
+### Important Note: Single Instance Testing
+
+**Current Test Setup:**
+The automated tests (`./scripts/test-cache-scenarios.sh`) run on a **single catalog-service instance**. This means:
+
+✅ **What IS tested:**
+- Cache hit/miss behavior
+- Response time improvements
+- Cache eviction on updates
+- Kafka event publishing (Scenario C)
+
+❌ **What is NOT tested:**
+- Multiple instance coordination
+- Distributed cache invalidation across instances
+- Real-world stale data scenarios between instances
+
+**Why Single Instance?**
+- Simpler local development setup
+- Easier to debug and understand
+- Demonstrates core caching concepts
+- Sufficient for educational purposes
+
+**Production Reality:**
+On Render (or any cloud platform), you typically run **multiple instances** for:
+- High availability
+- Load balancing
+- Horizontal scaling
+
+In production with multiple instances:
+- **Scenario B (TTL-only)** would show the stale data problem
+- **Scenario C (Kafka)** would demonstrate distributed invalidation
+
+### How Testing Works
+
+The test script:
+1. **Stops** the catalog-service
+2. **Starts** it with a specific `CACHE_MODE` environment variable
+3. **Runs** the test sequence (read → read → update → read)
+4. **Measures** latency and checks for stale data
+5. **Repeats** for each scenario
+
+```bash
+# Test Scenario A
+CACHE_MODE=none mvn spring-boot:run
+
+# Test Scenario B  
+CACHE_MODE=ttl mvn spring-boot:run
+
+# Test Scenario C
+CACHE_MODE=ttl_invalidate mvn spring-boot:run
+```
+
 ### Interactive Demo
 
 Visit the Cache Demo page:
@@ -535,10 +590,10 @@ The demo runs these exact steps:
 ### Automated Testing
 
 ```bash
-# Quick test (2 minutes)
+# Quick test (2 minutes) - Single instance
 ./scripts/quick-cache-test.sh
 
-# Full comparison (30-45 minutes)
+# Full comparison (30-45 minutes) - Single instance with k6 load testing
 ./scripts/run-all-scenarios.sh
 ```
 
@@ -552,15 +607,45 @@ The demo runs these exact steps:
 **Scenario B:**
 - First request: "Cache MISS"
 - Second request: "Cache HIT"
-- After update: May see stale data on other instances
-- Inconsistency lasts until TTL expires
+- After update on same instance: Fresh data (cache evicted locally)
+- **In production with multiple instances:** Would see stale data
 
 **Scenario C:**
 - First request: "Cache MISS"
 - Second request: "Cache HIT"
 - After update: "Kafka invalidation event sent"
-- All instances: "Cache invalidated via Kafka"
-- Inconsistency window < 100ms
+- Kafka consumer receives event and evicts cache
+- **In production with multiple instances:** All instances would evict cache
+
+### Simulating Multiple Instances (Advanced)
+
+To truly test multiple instances locally, you would need to:
+
+```bash
+# Terminal 1: Instance A on port 8081
+cd catalog-service
+export SERVER_PORT=8081
+export CACHE_MODE=ttl_invalidate
+mvn spring-boot:run
+
+# Terminal 2: Instance B on port 8082
+cd catalog-service
+export SERVER_PORT=8082
+export CACHE_MODE=ttl_invalidate
+mvn spring-boot:run
+
+# Terminal 3: Load balancer (nginx or API Gateway)
+# Configure to round-robin between 8081 and 8082
+
+# Terminal 4: Run tests
+# Update product on Instance A
+curl -X POST http://localhost:8081/products/1 -d '{"price": 99.99}'
+
+# Read from Instance B (should get fresh data after Kafka event)
+curl http://localhost:8082/products/1
+```
+
+This is complex and not included in the automated tests, but demonstrates the real-world scenario.
 
 ---
 
