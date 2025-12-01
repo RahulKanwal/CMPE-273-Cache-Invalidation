@@ -1,15 +1,50 @@
 package com.eds.catalog.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @ConditionalOnProperty(name = "spring.cache.type", havingValue = "redis")
 public class RedisConfig {
+    
+    @Value("${spring.redis.host:localhost}")
+    private String redisHost;
+    
+    @Value("${spring.redis.port:6379}")
+    private int redisPort;
+    
+    @Value("${spring.redis.password:}")
+    private String redisPassword;
+    
+    @Value("${spring.redis.ssl:false}")
+    private boolean redisSsl;
+    
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+        config.setHostName(redisHost);
+        config.setPort(redisPort);
+        if (redisPassword != null && !redisPassword.isEmpty()) {
+            config.setPassword(redisPassword);
+        }
+        
+        LettuceClientConfiguration.LettuceClientConfigurationBuilder clientConfig = 
+            LettuceClientConfiguration.builder();
+        
+        if (redisSsl) {
+            clientConfig.useSsl();
+        }
+        
+        return new LettuceConnectionFactory(config, clientConfig.build());
+    }
     
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
