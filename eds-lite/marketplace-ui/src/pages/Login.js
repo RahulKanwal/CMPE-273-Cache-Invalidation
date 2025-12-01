@@ -82,20 +82,6 @@ const Login = () => {
         <div style={{ textAlign: 'center' }}>
           <p>Don't have an account? <Link to="/register">Register here</Link></p>
         </div>
-
-        <div style={{ 
-          marginTop: '30px', 
-          padding: '20px', 
-          background: '#f8f9fa', 
-          borderRadius: '6px',
-          fontSize: '14px'
-        }}>
-          <strong>Demo Accounts:</strong>
-          <br />
-          Admin: admin@marketplace.com / admin123
-          <br />
-          <em>Or register a new customer account</em>
-        </div>
       </div>
     </div>
   );
