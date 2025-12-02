@@ -103,17 +103,23 @@ const Home = () => {
         <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>Why Choose EDS Marketplace?</h2>
         <div className="grid grid-3">
           <div className="card" style={{ padding: '30px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '15px' }}>⚡</div>
+            <div style={{ marginBottom: '15px' }}>
+              <img src="https://img.icons8.com/ios-filled/50/667eea/lightning-bolt.png" alt="Fast" style={{ width: '50px', height: '50px' }} />
+            </div>
             <h3>Lightning Fast</h3>
             <p>Powered by Redis caching and Kafka for real-time updates</p>
           </div>
           <div className="card" style={{ padding: '30px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '15px' }}>🔒</div>
+            <div style={{ marginBottom: '15px' }}>
+              <img src="https://img.icons8.com/ios-filled/50/667eea/lock.png" alt="Secure" style={{ width: '50px', height: '50px' }} />
+            </div>
             <h3>Secure</h3>
             <p>JWT-based authentication and secure payment processing</p>
           </div>
           <div className="card" style={{ padding: '30px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '15px' }}>📱</div>
+            <div style={{ marginBottom: '15px' }}>
+              <img src="https://img.icons8.com/ios-filled/50/667eea/smartphone-tablet.png" alt="Responsive" style={{ width: '50px', height: '50px' }} />
+            </div>
             <h3>Responsive</h3>
             <p>Perfect experience on desktop, tablet, and mobile devices</p>
           </div>
@@ -125,13 +131,14 @@ const Home = () => {
 
 const getCategoryIcon = (category) => {
   const icons = {
-    'Electronics': '📱',
-    'Clothing': '👕',
-    'Home & Garden': '🏠',
-    'Books': '📚',
-    'Sports & Outdoors': '⚽'
+    'Electronics': 'https://img.icons8.com/ios-filled/50/667eea/laptop.png',
+    'Clothing': 'https://img.icons8.com/ios-filled/50/667eea/clothes.png',
+    'Home & Garden': 'https://img.icons8.com/ios-filled/50/667eea/home.png',
+    'Books': 'https://img.icons8.com/ios-filled/50/667eea/book.png',
+    'Sports & Outdoors': 'https://img.icons8.com/ios-filled/50/667eea/football2.png'
   };
-  return icons[category] || '🛍️';
+  const iconUrl = icons[category] || 'https://img.icons8.com/ios-filled/50/667eea/shopping-bag.png';
+  return <img src={iconUrl} alt={category} style={{ width: '50px', height: '50px' }} />;
 };
 
 export default Home;
